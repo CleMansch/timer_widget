@@ -6,71 +6,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
   $( function() {
     $( "#draggable" ).draggable();
+  } );
+  $( function() {
+    $( ".widget input[type=submit], .widget a, .widget button" ).button();
+    $( "button, a" ).click( function( event ) {
+      event.preventDefault();
+    } );
   } );
   </script>
   <!-- css -->
     <style>
         body{
-        background-color:darkolivegreen;
+        background-color:black;
         font-family: "roboto", sans-serif;
         margin: 0;
     }
     #draggable{
 background-color:#2D882D;
-width: 50%;
+width: 15em;
     }
 #classroomwidget{
 width: 50%;
 }
-    #tminusBig, .crementor{
+
+    #tminusBig{
       display: flex;
-        flex-wrap: wrap;
+      flex-wrap: wrap;
+      height: 5.5em;
+      margin-top: -2em;
+
     }
     .incr{
       padding-left: 0.5em;
       padding-right: 0.5em;
-      background-color: honeydew;
-      border: 1px solid red;
+
     height: 1em;
-    width: 1em;
+    width: 2.05em;
     }
     .decr{
       padding-left: 0.5em;
       padding-right: 0.5em;
-      background-color: honeydew;
-      border: 1px solid red;
+
     height: 1em;
-    width: 1em;
+    width: 2.05em;
     }
     h1 {
   letter-spacing: 3px;
   font-size: 3em;
+}
+.ui-button {
+  height: 2em;
+  padding-bottom: 1.75em;
+}
+svg {
+  margin-left: -0.25em;
+
 }
     </style>
   </head>
 <!-- start widget -->
 <div id="draggable">
   <!-- increment buttons -->
-    <div class="crementor"><div id="incr1" class="incr">+</div><div id="incr2" class="incr">+</div><div id="incr3" class="incr">+</div><div id="incr4" class="incr">+</div></div>
+    <div class="crementor widget"><button id="incr1" class="incr">    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13 2v9h9v2h-9v9h-2v-9h-9v-2h9v-9h2zm2-2h-6v9h-9v6h9v9h6v-9h9v-6h-9v-9z"/></svg></button><button id="incr2" class="incr">    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13 2v9h9v2h-9v9h-2v-9h-9v-2h9v-9h2zm2-2h-6v9h-9v6h9v9h6v-9h9v-6h-9v-9z"/></svg></button><button id="incr3" class="incr">    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13 2v9h9v2h-9v9h-2v-9h-9v-2h9v-9h2zm2-2h-6v9h-9v6h9v9h6v-9h9v-6h-9v-9z"/></svg></button><button id="incr4" class="incr">    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13 2v9h9v2h-9v9h-2v-9h-9v-2h9v-9h2zm2-2h-6v9h-9v6h9v9h6v-9h9v-6h-9v-9z"/></svg></button></div>
 <!-- big counter -->
     <div id="tminusBig">
       <h1 id="bigtitle">00:00 </h1>
     </div>
 <!-- decrement buttons -->
-      <div class="crementor"><div id="decr1" class="decr">-</div><div id="decr2" class="decr">-</div><div id="decr3" class="decr">-</div><div id="decr4" class="decr">-</div>
+      <div class="crementor widget"><button id="decr1" class="decr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-12v-2h12v2z"/></svg></button><button id="decr2" class="decr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-12v-2h12v2z"/></svg></button><button id="decr3" class="decr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-12v-2h12v2z"/></svg></button><button id="decr4" class="decr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-12v-2h12v2z"/></svg></button>
+      </div>
 <!-- function buttons -->
-          <button id="bStart">Start</button>
-          <button id="bPause">Pause</button>
-          <button id="bStopp">Stopp</button>
+<div class="widget">
+          <button id="bStart"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14 12h-4v-12h4v12zm6.949-4.493l1.81-.857c-.353-.7-.758-1.368-1.236-1.981l-1.512 1.318c.36.474.667.986.938 1.52zm-.797-4.299c-.589-.54-1.214-1.038-1.9-1.454l-1.216 1.599c.577.334 1.104.739 1.602 1.177l1.514-1.322zm1.827 7.792h2.006c-.072-.861-.229-1.694-.473-2.493l-1.82.862c.144.527.23 1.074.287 1.631zm-1.895 6.919l1.539 1.29c.465-.616.871-1.276 1.211-1.976l-1.846-.787c-.259.519-.562 1.011-.904 1.473zm1.912-4.919c-.054.54-.162 1.063-.299 1.574l1.864.795c.224-.762.372-1.553.439-2.369h-2.004zm-3.258 6.403c-1.779 1.608-4.129 2.597-6.713 2.597-5.525 0-10.021-4.486-10.021-10 0-1.913.554-3.691 1.496-5.207l2.162 2.162 1.353-7.014-7.015 1.351 2.045 2.045c-1.287 1.904-2.045 4.191-2.045 6.663 0 6.627 5.385 12 12.025 12 3.204 0 6.107-1.259 8.264-3.297l-1.551-1.3z"/></svg></button>
+          <button id="bPause"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11 22h-4v-20h4v20zm6-20h-4v20h4v-20z"/></svg></button>
+          <button id="bStopp"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M2 2h20v20h-20z"/></svg></button>
+          <button id="bMute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 9v6h-1v-6h1zm13-7l-9 5v2.288l7-3.889v13.202l-7-3.889v2.288l9 5v-20zm-11 5h-5v10h5v-10zm17.324 4.993l1.646-1.659-1.324-1.324-1.651 1.67-1.665-1.648-1.316 1.318 1.67 1.657-1.65 1.669 1.318 1.317 1.658-1.672 1.666 1.653 1.324-1.325-1.676-1.656z"/></svg></button>
+</div>
           <input type="checkbox" style="width:20px;" value="1" name="checkbox" class="checkbox_check">Audio Alarm
-        </div>
+</div>
 </div>
 <!-- jquery -->
     <script>
 $(document).ready(function(){
+  
 // soundlibrary
   var audio = new Audio('timeout.mp3');
 
@@ -175,7 +198,11 @@ $("#bStopp").click(function() {
     totalAmount=0;
     $('#bigtitle').text("00:00");
 });
+$("#bMute").click(function() {
 
+  $('input.checkbox_check').prop('checked');
+
+});
 });
     </script>
   </body>
