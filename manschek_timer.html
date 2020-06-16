@@ -30,7 +30,6 @@ width: 50%;
     }
 
 #classroomwidget{
-  /* background-color: green; */
 width: 50%;
 }
     #tminusBig, .crementor{
@@ -62,16 +61,12 @@ width: 50%;
     </style>
   </head>
 
-<!-- bottommmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
+<!-- start -->
 <div id="draggable">
     <div class="crementor"><div id="incr1" class="incr">+</div><div id="incr2" class="incr">+</div><div id="incr3" class="incr">+</div><div id="incr4" class="incr">+</div></div>
 
     <div id="tminusBig">
       <h1 id="bigtitle">00:00 </h1>
-      <!-- <p> 
-        <label><input type="radio" name="soundvolume" value="withalert">audio-Alarm</label> 
-        <label><input type="radio" name="soundvolume" value="withoutalert">ohne Audio</label>
-    </p> -->
     </div>
 
 
@@ -98,8 +93,6 @@ function timeSet () {
     localStorage.setItem('countDown', totalAmount);
 
 //colouranimation with 60 secs
-var state = true;
-
       if ( totalAmount <=60 && totalAmount >=1) {
         $( "#draggable" ).animate({
           backgroundColor: "#aa0000",
@@ -122,9 +115,7 @@ var state = true;
          return;
 
      }
-//play Sound on end of Countdown bound to radio-box decision
-// var radioValue = $("input[name='soundvolume']:checked").val();
-// if (totalAmount == 0 && radioValue=="withalert") {
+//play Sound when checkbox checked
   if ( totalAmount == 0 ) {{
         $( "#draggable" ).animate({
           backgroundColor: "#aquamarine",
@@ -134,9 +125,6 @@ var state = true;
         audio.play();
 
      }
-
-     
-// var radioValue = $("input[name='soundvolume']:checked").val();
     var minutes = parseInt(totalAmount/60);
     var seconds = parseInt(totalAmount%60);
 
@@ -181,7 +169,6 @@ $("#decr3").click(function() {
   timeSet();
 });
 $("#decr4").click(function() {
-    // totalAmount-=1;
   timeSet();
 });
 $("#bStart").click(function() {
@@ -192,8 +179,6 @@ $("#bPause").click(function() {
   clearTimeout(timeloop);
 });
 $("#bStopp").click(function() {
-  // totalAmount=-10;
-    // timeSet();
     clearTimeout(timeloop);
     totalAmount=0;
     $('#bigtitle').text("00:00");
