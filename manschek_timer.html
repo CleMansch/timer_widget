@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+  <head>
+    <title>test</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+  <script>
+  $( function() {
+    $( "#draggable" ).draggable();
+  } );
+
+  
+  </script>
+    
+    <style>
+        body{
+        background-color:darkolivegreen;
+        font-family: "roboto", sans-serif;
+        margin: 0;
+
+    }
+    #draggable{
+background-color:#2D882D;
+width: 50%;
+    }
+
+#classroomwidget{
+  /* background-color: green; */
+width: 50%;
+}
+    #tminusBig, .crementor{
+      display: flex;
+        flex-wrap: wrap;
+
+    }
+    .incr{
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      background-color: honeydew;
+      border: 1px solid red;
+    height: 1em;
+    width: 1em;
+    }
+    .decr{
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      background-color: honeydew;
+      border: 1px solid red;
+    height: 1em;
+    width: 1em;
+    }
+    h1 {
+  letter-spacing: 3px;
+  font-size: 3em;
+}
+
+    </style>
+  </head>
+
+<!-- bottommmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
+<div id="draggable">
+    <div class="crementor"><div id="incr1" class="incr">+</div><div id="incr2" class="incr">+</div><div id="incr3" class="incr">+</div><div id="incr4" class="incr">+</div></div>
+
+    <div id="tminusBig">
+      <h1 id="bigtitle">00:00 </h1>
+      <!-- <p> 
+        <label><input type="radio" name="soundvolume" value="withalert">audio-Alarm</label> 
+        <label><input type="radio" name="soundvolume" value="withoutalert">ohne Audio</label>
+    </p> -->
+    </div>
+
+
+      <div class="crementor"><div id="decr1" class="decr">-</div><div id="decr2" class="decr">-</div><div id="decr3" class="decr">-</div><div id="decr4" class="decr">-</div>
+          <button id="bStart">Start</button>
+          <button id="bPause">Pause</button>
+          <button id="bStopp">Stopp</button>
+          <input type="checkbox" style="width:20px;" value="1" name="checkbox" class="checkbox_check">Audio Alarm
+        </div>
+</div>
+    <script>
+$(document).ready(function(){
+  var audio = new Audio('timeout.mp3');
+
+  // Get totalAmount from localStorage and if there is positive value call timeSet() immediately
+    var totalAmount = localStorage.getItem('countDown') || 0,
+    timeloop;
+    if (totalAmount) {
+    timeSet();
+}
+function timeSet () {
+    totalAmount--;
+    // Refresh value in localStorage
+    localStorage.setItem('countDown', totalAmount);
+
+//colouranimation with 60 secs
+var state = true;
+
+      if ( totalAmount <=60 && totalAmount >=1) {
+        $( "#draggable" ).animate({
+          backgroundColor: "#aa0000",
+          color: "black",
+
+        }, 1000 );
+      } else {
+        $( "#draggable" ).animate({
+          backgroundColor: "#2D882D",
+          color: "#000"
+        }, 1000 );
+      state = !state;}
+
+     // If countdown is over, then remove value from storage and clear timeout
+     if (totalAmount < 0 ) {
+         localStorage.removeItem('countDown');
+          totalAmount = 0;
+         clearTimeout(timeloop);
+        $('#bigtitle').text("00:00");
+         return;
+
+     }
+//play Sound on end of Countdown bound to radio-box decision
+// var radioValue = $("input[name='soundvolume']:checked").val();
+// if (totalAmount == 0 && radioValue=="withalert") {
+  if ( totalAmount == 0 ) {{
+        $( "#draggable" ).animate({
+          backgroundColor: "#aquamarine",
+          color: "#000",
+        }, 1000 );}}
+  if (totalAmount == 0 && $('input.checkbox_check').prop('checked')) {
+        audio.play();
+
+     }
+
+     
+// var radioValue = $("input[name='soundvolume']:checked").val();
+    var minutes = parseInt(totalAmount/60);
+    var seconds = parseInt(totalAmount%60);
+
+    if(seconds < 10)
+        seconds = "0"+seconds;
+
+        if(minutes < 10)
+        minutes = "0"+minutes;
+
+    $('#bigtitle').text(minutes + ":" + seconds);
+    clearTimeout(timeloop);
+    timeloop = setTimeout(timeSet, 1000);
+}
+
+$("#incr1").click(function() {
+  totalAmount+=601;
+  timeSet();
+});
+$("#incr2").click(function() {
+    totalAmount+=61;
+  timeSet();
+});
+$("#incr3").click(function() {
+    totalAmount+=11;
+  timeSet();
+});
+$("#incr4").click(function() {
+    totalAmount+=2;
+    timeSet();
+    
+});
+$("#decr1").click(function() {
+  totalAmount-=599;
+  timeSet();
+});
+$("#decr2").click(function() {
+    totalAmount-=59;
+  timeSet();
+});
+$("#decr3").click(function() {
+    totalAmount-=9;
+  timeSet();
+});
+$("#decr4").click(function() {
+    // totalAmount-=1;
+  timeSet();
+});
+$("#bStart").click(function() {
+  totalAmount++;
+    timeSet();
+});
+$("#bPause").click(function() {
+  clearTimeout(timeloop);
+});
+$("#bStopp").click(function() {
+  // totalAmount=-10;
+    // timeSet();
+    clearTimeout(timeloop);
+    totalAmount=0;
+    $('#bigtitle').text("00:00");
+});
+
+});
+    </script>
+  </body>
+
+</html>
