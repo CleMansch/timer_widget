@@ -93,6 +93,8 @@ function timeSet () {
     localStorage.setItem('countDown', totalAmount);
 
 //colouranimation with 60 secs
+var state = true;
+
       if ( totalAmount <=60 && totalAmount >=1) {
         $( "#draggable" ).animate({
           backgroundColor: "#aa0000",
@@ -115,7 +117,7 @@ function timeSet () {
          return;
 
      }
-//play Sound when checkbox checked
+//play Sound on checkbox
   if ( totalAmount == 0 ) {{
         $( "#draggable" ).animate({
           backgroundColor: "#aquamarine",
@@ -125,6 +127,7 @@ function timeSet () {
         audio.play();
 
      }
+
     var minutes = parseInt(totalAmount/60);
     var seconds = parseInt(totalAmount%60);
 
