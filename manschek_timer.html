@@ -5,37 +5,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
   <script>
   $( function() {
     $( "#draggable" ).draggable();
   } );
-
-  
   </script>
-    
+  <!-- css -->
     <style>
         body{
         background-color:darkolivegreen;
         font-family: "roboto", sans-serif;
         margin: 0;
-
     }
     #draggable{
 background-color:#2D882D;
 width: 50%;
     }
-
 #classroomwidget{
 width: 50%;
 }
     #tminusBig, .crementor{
       display: flex;
         flex-wrap: wrap;
-
     }
     .incr{
       padding-left: 0.5em;
@@ -57,28 +49,29 @@ width: 50%;
   letter-spacing: 3px;
   font-size: 3em;
 }
-
     </style>
   </head>
-
-<!-- start -->
+<!-- start widget -->
 <div id="draggable">
+  <!-- increment buttons -->
     <div class="crementor"><div id="incr1" class="incr">+</div><div id="incr2" class="incr">+</div><div id="incr3" class="incr">+</div><div id="incr4" class="incr">+</div></div>
-
+<!-- big counter -->
     <div id="tminusBig">
       <h1 id="bigtitle">00:00 </h1>
     </div>
-
-
+<!-- decrement buttons -->
       <div class="crementor"><div id="decr1" class="decr">-</div><div id="decr2" class="decr">-</div><div id="decr3" class="decr">-</div><div id="decr4" class="decr">-</div>
+<!-- function buttons -->
           <button id="bStart">Start</button>
           <button id="bPause">Pause</button>
           <button id="bStopp">Stopp</button>
           <input type="checkbox" style="width:20px;" value="1" name="checkbox" class="checkbox_check">Audio Alarm
         </div>
 </div>
+<!-- jquery -->
     <script>
 $(document).ready(function(){
+// soundlibrary
   var audio = new Audio('timeout.mp3');
 
   // Get totalAmount from localStorage and if there is positive value call timeSet() immediately
@@ -87,19 +80,17 @@ $(document).ready(function(){
     if (totalAmount) {
     timeSet();
 }
+// heart of the operation
 function timeSet () {
     totalAmount--;
     // Refresh value in localStorage
     localStorage.setItem('countDown', totalAmount);
-
-//colouranimation with 60 secs
+//colouranimation on totalAmount
 var state = true;
-
       if ( totalAmount <=60 && totalAmount >=1) {
         $( "#draggable" ).animate({
           backgroundColor: "#aa0000",
           color: "black",
-
         }, 1000 );
       } else {
         $( "#draggable" ).animate({
@@ -107,7 +98,6 @@ var state = true;
           color: "#000"
         }, 1000 );
       state = !state;}
-
      // If countdown is over, then remove value from storage and clear timeout
      if (totalAmount < 0 ) {
          localStorage.removeItem('countDown');
@@ -115,19 +105,18 @@ var state = true;
          clearTimeout(timeloop);
         $('#bigtitle').text("00:00");
          return;
-
      }
-//play Sound on checkbox
+// little bit of funk at 0
   if ( totalAmount == 0 ) {{
         $( "#draggable" ).animate({
-          backgroundColor: "#aquamarine",
+          backgroundColor: "#AAA539",
           color: "#000",
         }, 1000 );}}
+//play Sound on checkbox
   if (totalAmount == 0 && $('input.checkbox_check').prop('checked')) {
         audio.play();
-
      }
-
+//"engine"
     var minutes = parseInt(totalAmount/60);
     var seconds = parseInt(totalAmount%60);
 
@@ -141,7 +130,7 @@ var state = true;
     clearTimeout(timeloop);
     timeloop = setTimeout(timeSet, 1000);
 }
-
+//all the buttons, first increment, then decrement, then functional
 $("#incr1").click(function() {
   totalAmount+=601;
   timeSet();
